@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  shell:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: kotlin-app
+    volumes:
+      - .:/usr/src/app
+      - ./.gradle:/root/.gradle
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: kotlin-app
+    volumes:
+      - .:/usr/src/app
+      - ./.gradle:/root/.gradle
+    command: ./tools/gradlew-run.sh
+
+  test:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: kotlin-app
+    volumes:
+      - .:/usr/src/app
+      - ./.gradle:/root/.gradle
+    command: ./tools/gradlew-test.sh

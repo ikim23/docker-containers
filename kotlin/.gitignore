@@ -1,0 +1,5 @@
+.gradle/
+build/
+
+# Unnecessary inside Linux container
+gradlew.bat
