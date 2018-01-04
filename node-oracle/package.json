@@ -1,0 +1,16 @@
+{
+  "name": "node-oracle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "ikim23",
+  "license": "ISC",
+  "dependencies": {
+    "oracledb": "^1.13.1"
+  },
+  "devDependencies": {}
+}
