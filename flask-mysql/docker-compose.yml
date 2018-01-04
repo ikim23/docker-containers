@@ -1,0 +1,39 @@
+version: '2'
+services:
+
+  # https://github.com/tiangolo/uwsgi-nginx-flask-docker/tree/master/example-flask-package-python3.6
+  app:
+    depends_on:
+      - db
+      - adminer
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: flask-app
+    environment:
+      - FLASK_APP=app/main.py
+      - FLASK_DEBUG=1
+      - 'RUN=flask run --host=0.0.0.0 --port=80'
+    volumes:
+      - ./app:/app
+    ports:
+      - 3000:80
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+      - ./db-data:/var/lib/mysql
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+
+  adminer:
+    depends_on:
+      - db
+    image: adminer
+    ports:
+      - 8080:8080
