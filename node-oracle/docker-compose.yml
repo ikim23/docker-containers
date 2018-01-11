@@ -8,10 +8,27 @@ services:
       context: .
       dockerfile: ./Dockerfile
     image: node-app
+    env_file: .env
     volumes:
       - .:/usr/src/app
     ports:
       - 3000:3000
+    command: npm start
+
+  debug:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: node-app
+    env_file: .env
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
+      - 9229:9229
+    command: npm run debug
 
   shell:
     depends_on:
@@ -20,6 +37,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     image: node-app
+    env_file: .env
     volumes:
       - .:/usr/src/app
     command: bash
