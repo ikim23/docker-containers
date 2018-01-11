@@ -11,8 +11,8 @@ oracledb.getConnection({
   console.log('Connection was successful!');
   connection.execute('SELECT * FROM numbers', (err, data) => {
     const rows = data.rows || [];
-    rows.forEach(([my_number]) => {
-      console.log(my_number);
+    rows.forEach(([myNumber]) => {
+      console.log(myNumber);
     });
     connection.close((closeErr) => {
       if (closeErr) {
