@@ -1,0 +1,6 @@
+.bamboo/
+.bamboo-logs/
+.mysql/
+
+# Set environment variables and uncomment:
+# .env

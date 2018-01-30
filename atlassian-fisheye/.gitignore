@@ -1,0 +1,5 @@
+.fisheye/
+.mysql/
+
+# Set environment variables and uncomment:
+# .env

@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+  bamboo:
+    depends_on:
+      - bamboodb
+    image: cptactionhank/atlassian-bamboo
+    restart: always
+    volumes:
+      - ./.bamboo:/var/atlassian/bamboo
+      - ./.bamboo-logs:/opt/atlassian/bamboo/logs
+    ports:
+      - 8086:8085
+
+  bamboodb:
+    image: mysql
+    restart: always
+    env_file: .env
+    volumes:
+      - ./.mysql:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf

@@ -1,0 +1,20 @@
+version: '2'
+services:
+
+  fisheye:
+    depends_on:
+      - fisheyedb
+    image: mswinarski/atlassian-fisheye
+    restart: always
+    volumes:
+      - ./.fisheye:/atlassian/data/fisheye
+    ports:
+      - 8000:8080
+
+  fisheyedb:
+    image: mysql
+    restart: always
+    env_file: .env
+    volumes:
+      - ./.mysql:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf
