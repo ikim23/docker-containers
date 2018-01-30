@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+  testlink:
+    depends_on:
+      - mariadb
+    image: bitnami/testlink
+    restart: always
+    env_file: .env
+    volumes:
+      - ./.testlink:/bitnami
+    ports:
+      - 8090:80
+
+  mariadb:
+    image: bitnami/mariadb:latest
+    restart: always
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - ./.mariadb:/bitnami
