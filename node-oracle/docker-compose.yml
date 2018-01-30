@@ -6,21 +6,20 @@ services:
       - db
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile
     image: node-app
     env_file: .env
     volumes:
       - .:/usr/src/app
     ports:
       - 3000:3000
-    command: npm start
 
   debug:
     depends_on:
       - db
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile
     image: node-app
     env_file: .env
     volumes:
@@ -35,7 +34,7 @@ services:
       - db
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile
     image: node-app
     env_file: .env
     volumes:
@@ -45,11 +44,12 @@ services:
   db:
     image: sath89/oracle-12c
     environment:
+      # Allow web management console
       - WEB_CONSOLE=false
-      # uncomment to run import on every startup
+      # Run scripts inside ./db-init/ folder on every startup
       # - IMPORT_FROM_VOLUME=true
     volumes:
-      - ./db-data:/u01/app/oracle
+      - ./.oracle:/u01/app/oracle
       - ./db-init:/docker-entrypoint-initdb.d
     ports:
       - 1521:1521

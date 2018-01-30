@@ -1,4 +1,6 @@
+.oracle/
 node_modules/
-db-data/
-
 npm-debug.log*
+
+# Set your environment variables and uncomment:
+# .env
