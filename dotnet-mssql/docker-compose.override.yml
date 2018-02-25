@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CONNECTION_STRING=Server=db;Database=my_database;User Id=sa;Password=Password1;
+    ports:
+      - '3000:80'
+    
+  db:
+    environment:
+      - SA_PASSWORD=Password1
+    volumes:
+      - /var/opt/mssql
+    ports:
+      - '1433:1433'

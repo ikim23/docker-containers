@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  api:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: MessageAPI/Dockerfile
+    image: api
+    
+  db:
+    image: microsoft/mssql-server-linux
+    environment:
+      - ACCEPT_EULA=Y
