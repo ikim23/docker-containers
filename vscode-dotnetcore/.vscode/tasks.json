@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build for debug",
+            "type": "shell",
+            "command": ".\\.scripts\\docker-build.sh",
+            "windows": {
+                "command": ".\\.scripts\\docker-build.cmd"
+            }
+        },
+    ]
+}
